@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para el amor de mi vida</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main class="card-container">
+    
+    <!-- PASO 1: Bienvenida -->
+    <section id="step-1" class="step active">
+      <div class="heart-icon">🩶</div>
+      <h1>Para el amor de mi vida</h1>
+      <button id="btn-start" class="btn">Te amo, ari🩶</button>
+    </section>
+
+    <!-- PASO 2: Fotos y Carta -->
+    <section id="step-2" class="step hidden">
+      <p class="date-header">06 de mayo de 2026</p>
+      
+      <!-- Carrusel sencillo de fotos -->
+      <div class="photo-frame">
+        <img id="carousel-img" src="img/foto1.jpg" alt="Nosotros">
+        <p class="couple-names">Greg & Cris</p>
+      </div>
+
+      <!-- Sobre de la Carta -->
+      <div class="envelope-card">
+        <p>Hay algo dentro para ti</p>
+        <button id="btn-open-letter" class="btn-badge">Descúbrelo</button>
+      </div>
+
+      <!-- Contenido de la carta (oculto al inicio) -->
+      <div id="letter-content" class="letter-text hidden">
+        <p>Hoy celebramos todo lo que hemos vivido, pero, sobre todo, todo lo que aún nos queda por vivir.</p>
+        <p>Porque si llegar hasta aquí ha sido tan bonito, no puedo imaginar lo increíble que será seguir escribiendo esta historia a tu lado.</p>
+        
+        <div class="proposal-box">
+          <p class="question">¿Te gustaría seguir escribiendo nuestra historia?</p>
+          <button id="btn-accept" class="btn">Sí, quiero 🩶</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PASO 3: Contador y Cierre -->
+    <section id="step-3" class="step hidden">
+      <h2>Han sido los mejores</h2>
+      
+      <div class="counter-grid">
+        <div class="time-unit"><span id="years">0</span><small>años</small></div>
+        <div class="time-unit"><span id="months">0</span><small>meses</small></div>
+        <div class="time-unit"><span id="days">0</span><small>días</small></div>
+      </div>
+      
+      <p class="subtext">de mi vida</p>
+
+      <div class="photo-frame">
+        <img src="img/foto4.jpg" alt="Juntos">
+      </div>
+
+      <p class="final-thanks">Gracias por compartir tu vida conmigo</p>
+      <span class="footer-tag">HECHO CON AMOR</span>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
