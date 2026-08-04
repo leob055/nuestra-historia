@@ -19,26 +19,38 @@ body {
   width: 100%;
   max-width: 400px;
   background: #ffffff;
-  border-radius: 20px;
+  border-radius: 24px;
   padding: 25px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.06);
   text-align: center;
+  overflow: hidden;
 }
 
 .step {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 18px;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 .hidden {
   display: none !important;
+  opacity: 0;
+  transform: translateY(15px);
 }
 
 .heart-icon {
-  color: #e65b5b;
-  font-size: 24px;
+  font-size: 28px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
 }
 
 h1 {
@@ -54,11 +66,12 @@ h1 {
   border-radius: 25px;
   font-size: 16px;
   cursor: pointer;
+  box-shadow: 0 4px 12px rgba(217, 119, 87, 0.3);
   transition: transform 0.2s, background-color 0.2s;
 }
 
 .btn:active {
-  transform: scale(0.96);
+  transform: scale(0.95);
 }
 
 .date-header {
@@ -69,39 +82,53 @@ h1 {
 .photo-frame {
   background: #faf8f5;
   padding: 12px;
-  border-radius: 12px;
+  border-radius: 16px;
   border: 1px solid #f0eae1;
   width: 100%;
+  cursor: pointer;
 }
 
-.photo-frame img {
+.carousel-wrapper img, .photo-frame img {
   width: 100%;
   height: 250px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 10px;
+  transition: opacity 0.3s ease;
 }
 
 .couple-names {
   margin-top: 8px;
   font-size: 14px;
+  font-weight: 500;
   color: #665549;
+}
+
+.tap-hint {
+  font-size: 11px;
+  color: #a09083;
 }
 
 .envelope-card {
   background: #fdf3eb;
   border: 1px dashed #e8c4b8;
-  padding: 15px;
-  border-radius: 12px;
+  padding: 18px;
+  border-radius: 16px;
   width: 100%;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.envelope-icon {
+  font-size: 32px;
+  margin-bottom: 5px;
 }
 
 .btn-badge {
   background: #e65b5b;
   color: #fff;
   border: none;
-  padding: 6px 16px;
-  border-radius: 15px;
-  font-size: 12px;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 13px;
   margin-top: 10px;
   cursor: pointer;
 }
@@ -111,13 +138,20 @@ h1 {
   line-height: 1.6;
   color: #554438;
   background: #fffdfb;
-  padding: 15px;
-  border-radius: 10px;
+  padding: 18px;
+  border-radius: 16px;
   border: 1px solid #f2e9e1;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .proposal-box {
-  margin-top: 20px;
+  margin-top: 18px;
   border-top: 1px solid #f0eae1;
   padding-top: 15px;
 }
@@ -141,7 +175,7 @@ h1 {
 }
 
 .time-unit span {
-  font-size: 28px;
+  font-size: 32px;
   font-weight: bold;
   color: #d97757;
 }
