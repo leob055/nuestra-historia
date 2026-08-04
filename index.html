@@ -14,32 +14,36 @@
     <section id="step-1" class="step active">
       <div class="heart-icon">🩶</div>
       <h1>Para el amor de mi vida</h1>
-      <button id="btn-start" class="btn">Te amo, ari🩶</button>
+      <button id="btn-start" class="btn">Te amo, ari 🩶</button>
     </section>
 
     <!-- PASO 2: Fotos y Carta -->
     <section id="step-2" class="step hidden">
       <p class="date-header">06 de mayo de 2026</p>
       
-      <!-- Carrusel sencillo de fotos -->
+      <!-- Carrusel de fotos -->
       <div class="photo-frame">
-        <img id="carousel-img" src="img/foto1.jpg" alt="Nosotros">
+        <div class="carousel-wrapper">
+          <img id="carousel-img" src="img/foto1.jpg" alt="Nosotros" onerror="this.src='foto1.jpg'">
+        </div>
         <p class="couple-names">Greg & Cris</p>
+        <span class="tap-hint">Toca la foto para ver más 📸</span>
       </div>
 
-      <!-- Sobre de la Carta -->
-      <div class="envelope-card">
+      <!-- Sobre interactivo -->
+      <div id="envelope-container" class="envelope-card">
+        <div class="envelope-icon">✉️</div>
         <p>Hay algo dentro para ti</p>
         <button id="btn-open-letter" class="btn-badge">Descúbrelo</button>
       </div>
 
-      <!-- Contenido de la carta (oculto al inicio) -->
+      <!-- Contenido de la carta -->
       <div id="letter-content" class="letter-text hidden">
         <p>Hoy celebramos todo lo que hemos vivido, pero, sobre todo, todo lo que aún nos queda por vivir.</p>
         <p>Porque si llegar hasta aquí ha sido tan bonito, no puedo imaginar lo increíble que será seguir escribiendo esta historia a tu lado.</p>
         
         <div class="proposal-box">
-          <p class="question">¿Te gustaría seguir escribiendo nuestra historia?</p>
+          <p class="question">¿Te gustaría ser mi novia y seguir escribiendo nuestra historia?</p>
           <button id="btn-accept" class="btn">Sí, quiero 🩶</button>
         </div>
       </div>
@@ -58,7 +62,7 @@
       <p class="subtext">de mi vida</p>
 
       <div class="photo-frame">
-        <img src="img/foto4.jpg" alt="Juntos">
+        <img src="img/foto4.jpg" alt="Juntos" onerror="this.src='foto4.jpg'">
       </div>
 
       <p class="final-thanks">Gracias por compartir tu vida conmigo</p>
