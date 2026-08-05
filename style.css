@@ -221,3 +221,25 @@ h1 { font-weight: 400; font-size: 24px; color: #3b2f28; }
 .final-photo img { width: 100%; height: 200px; object-fit: cover; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); margin: 15px 0; }
 .final-thanks { font-size: 17px; font-weight: 600; color: #4a3b32; }
 .footer-tag { font-size: 11px; letter-spacing: 2px; color: #b3a296; }
+/* Lluvia de corazones flotantes */
+.heart-fall {
+  position: fixed;
+  top: -10%;
+  font-size: 18px;
+  color: #e65b5b;
+  user-select: none;
+  pointer-events: none;
+  z-index: 1000;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(105vh) rotate(360deg);
+    opacity: 0;
+  }
+}
