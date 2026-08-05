@@ -8,50 +8,56 @@
 </head>
 <body>
 
+  <!-- Fondo animado -->
+  <div class="bg-animated"></div>
+
   <main class="card-container">
     
     <!-- PASO 1: Bienvenida -->
     <section id="step-1" class="step active">
-      <div class="heart-icon">🩶</div>
+      <div class="heart-icon floating">💜</div>
       <h1>Para el amor de mi vida</h1>
-      <button id="btn-start" class="btn">Te amo, ari 🩶</button>
+      <button id="btn-start" class="btn pulse-btn">Te amo, ari 💜</button>
     </section>
 
-    <!-- PASO 2: Fotos y Carta -->
+    <!-- PASO 2: Carrusel y Sobre Interactivo -->
     <section id="step-2" class="step hidden">
       <p class="date-header">06 de mayo de 2026</p>
+      <p class="anniversary-tag">¡Felices 3 meses! 🎉</p>
       
-      <!-- Carrusel de fotos -->
-      <div class="photo-frame">
-        <div class="carousel-wrapper">
-          <img id="carousel-img" src="img/foto1.jpg" alt="Nosotros" onerror="this.src='foto1.jpg'">
+      <!-- Carrusel deslizable -->
+      <div class="carousel-container">
+        <div class="carousel-track">
+          <!-- Agrega tus fotos aquí. Se deslizarán hacia los lados -->
+          <img src="foto1.jpg" onerror="this.src='img/foto1.jpg'" alt="Nosotros">
+          <img src="foto2.jpg" onerror="this.src='img/foto2.jpg'" alt="Nosotros">
+          <img src="foto3.jpg" onerror="this.src='img/foto3.jpg'" alt="Nosotros">
         </div>
-        <p class="couple-names">Greg & Cris</p>
-        <span class="tap-hint">Toca la foto para ver más 📸</span>
+        <div class="swipe-hint">Desliza para ver más 👈</div>
       </div>
 
-      <!-- Sobre interactivo -->
-      <div id="envelope-container" class="envelope-card">
-        <div class="envelope-icon">✉️</div>
-        <p>Hay algo dentro para ti</p>
-        <button id="btn-open-letter" class="btn-badge">Descúbrelo</button>
-      </div>
-
-      <!-- Contenido de la carta -->
-      <div id="letter-content" class="letter-text hidden">
-        <p>Hoy celebramos todo lo que hemos vivido, pero, sobre todo, todo lo que aún nos queda por vivir.</p>
-        <p>Porque si llegar hasta aquí ha sido tan bonito, no puedo imaginar lo increíble que será seguir escribiendo esta historia a tu lado.</p>
-        
-        <div class="proposal-box">
-          <p class="question">¿Te gustaría ser mi novia y seguir escribiendo nuestra historia?</p>
-          <button id="btn-accept" class="btn">Sí, quiero 🩶</button>
+      <!-- El Sobre 3D -->
+      <div class="envelope-wrapper" id="envelope-wrapper">
+        <div class="envelope">
+          <div class="flap"></div>
+          <div class="envelope-front"></div>
+          
+          <!-- La Carta que sale del sobre -->
+          <div class="letter" id="letter">
+            <p class="letter-text">Hoy celebramos todo lo que hemos vivido, pero, sobre todo, todo lo que aún nos queda por vivir.</p>
+            <p class="letter-text">Porque si llegar hasta aquí ha sido tan bonito, no puedo imaginar lo increíble que será seguir escribiendo esta historia a tu lado.</p>
+            <hr class="divider">
+            <p class="question">¿Quieres ser mi novia?</p>
+            <button id="btn-accept" class="btn btn-small">Sí, quiero 💜</button>
+          </div>
         </div>
+        <button id="btn-open-letter" class="btn-badge">Toca para abrir 💌</button>
       </div>
     </section>
 
     <!-- PASO 3: Contador y Cierre -->
     <section id="step-3" class="step hidden">
-      <h2>Han sido los mejores</h2>
+      <h2 class="title-gold">Han sido los mejores</h2>
       
       <div class="counter-grid">
         <div class="time-unit"><span id="years">0</span><small>años</small></div>
@@ -61,8 +67,8 @@
       
       <p class="subtext">de mi vida</p>
 
-      <div class="photo-frame">
-        <img src="img/foto4.jpg" alt="Juntos" onerror="this.src='foto4.jpg'">
+      <div class="final-photo">
+        <img src="foto4.jpg" onerror="this.src='img/foto4.jpg'" alt="Juntos">
       </div>
 
       <p class="final-thanks">Gracias por compartir tu vida conmigo</p>
