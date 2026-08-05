@@ -1,58 +1,47 @@
-// Transición entre pasos
+// Transición suave entre pantallas
 function goToStep(current, next) {
-  current.classList.add('hidden');
+  current.style.opacity = '0';
+  current.style.transform = 'scale(0.95)';
   setTimeout(() => {
+    current.classList.add('hidden');
     next.classList.remove('hidden');
-  }, 100);
+    // Pequeño retraso para que la animación de entrada se vea
+    setTimeout(() => {
+      next.style.opacity = '1';
+      next.style.transform = 'scale(1)';
+    }, 50);
+  }, 500);
 }
 
 const step1 = document.getElementById('step-1');
 const step2 = document.getElementById('step-2');
 const step3 = document.getElementById('step-3');
 
+// Iniciar sorpresa
 document.getElementById('btn-start').addEventListener('click', () => {
   goToStep(step1, step2);
 });
 
-// Desplegar la carta con animación
+// Abrir la carta (Animación del sobre)
 document.getElementById('btn-open-letter').addEventListener('click', function() {
-  const envelope = document.getElementById('envelope-container');
-  const letter = document.getElementById('letter-content');
+  const envelopeWrapper = document.getElementById('envelope-wrapper');
   
-  envelope.style.opacity = '0';
-  envelope.style.transform = 'scale(0.9)';
+  // Añade la clase que activa el CSS mágico
+  envelopeWrapper.classList.add('open');
   
+  // Oculta el botón de "Toca para abrir"
+  this.style.opacity = '0';
   setTimeout(() => {
-    envelope.classList.add('hidden');
-    letter.classList.remove('hidden');
+    this.style.display = 'none';
   }, 300);
 });
 
-// Carrusel de imágenes con soporte para rutas en raíz o en img/
-const photos = [
-  'foto1.jpg', 'img/foto1.jpg',
-  'foto2.jpg', 'img/foto2.jpg',
-  'foto3.jpg', 'img/foto3.jpg'
-];
-
-let photoIndex = 0;
-const carouselImg = document.getElementById('carousel-img');
-
-if (carouselImg) {
-  carouselImg.addEventListener('click', () => {
-    carouselImg.style.opacity = '0';
-    setTimeout(() => {
-      photoIndex = (photoIndex + 2) % photos.length;
-      carouselImg.src = photos[photoIndex];
-      carouselImg.style.opacity = '1';
-    }, 200);
-  });
-}
-
-// Aceptar propuesta y calcular tiempo exacto desde el 06/05/2026
+// Responder "Sí, quiero" y calcular tiempo
 document.getElementById('btn-accept').addEventListener('click', () => {
   goToStep(step2, step3);
-  const startDate = new Date(2026, 4, 6); // Mes 4 es mayo en JS
+  
+  // Fecha exacta de inicio: 06 de Mayo de 2026
+  const startDate = new Date(2026, 4, 6); // Mes 4 es mayo (0-11)
   calculateTime(startDate);
 });
 
@@ -74,7 +63,28 @@ function calculateTime(start) {
     months += 12;
   }
 
-  document.getElementById('years').textContent = years;
-  document.getElementById('months').textContent = months;
-  document.getElementById('days').textContent = days;
+  // Animación simple de conteo numérico
+  animateValue("years", 0, years, 1000);
+  animateValue("months", 0, months, 1500);
+  animateValue("days", 0, days, 2000);
+}
+
+// Función extra para que los números suban fluidamente
+function animateValue(id, start, end, duration) {
+  if (start === end) {
+    document.getElementById(id).textContent = end;
+    return;
+  }
+  let range = end - start;
+  let current = start;
+  let increment = end > start ? 1 : -1;
+  let stepTime = Math.abs(Math.floor(duration / range));
+  let obj = document.getElementById(id);
+  let timer = setInterval(function() {
+    current += increment;
+    obj.textContent = current;
+    if (current == end) {
+      clearInterval(timer);
+    }
+  }, stepTime);
 }
