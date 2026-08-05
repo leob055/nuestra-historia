@@ -5,7 +5,6 @@ function goToStep(current, next) {
   setTimeout(() => {
     current.classList.add('hidden');
     next.classList.remove('hidden');
-    // Pequeño retraso para que la animación de entrada se vea
     setTimeout(() => {
       next.style.opacity = '1';
       next.style.transform = 'scale(1)';
@@ -25,61 +24,38 @@ document.getElementById('btn-start').addEventListener('click', () => {
 // Abrir la carta (Animación del sobre)
 document.getElementById('btn-open-letter').addEventListener('click', function() {
   const envelopeWrapper = document.getElementById('envelope-wrapper');
-  
-  // Añade la clase que activa el CSS mágico
   envelopeWrapper.classList.add('open');
   
-  // Oculta el botón de "Toca para abrir"
   this.style.opacity = '0';
   setTimeout(() => {
     this.style.display = 'none';
   }, 300);
 });
 
-// Responder "Sí, quiero" y calcular tiempo
+// Responder "Sí, quiero"
 document.getElementById('btn-accept').addEventListener('click', () => {
   goToStep(step2, step3);
   
-  // Fecha exacta de inicio: 06 de Mayo de 2026
-  const startDate = new Date(2026, 4, 6); // Mes 4 es mayo (0-11)
-  calculateTime(startDate);
+  // Fijamos los valores exactos requeridos: 0 años, 3 meses, 0 días
+  animateValue("years", 0, 0, 500);
+  animateValue("months", 0, 3, 1200);
+  animateValue("days", 0, 0, 500);
+
+  // Iniciar lluvia de corazones minimalistas
+  createHeartRain();
 });
 
-function calculateTime(start) {
-  const now = new Date();
-  
-  let years = now.getFullYear() - start.getFullYear();
-  let months = now.getMonth() - start.getMonth();
-  let days = now.getDate() - start.getDate();
-
-  if (days < 0) {
-    months--;
-    const lastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-    days += lastMonth.getDate();
-  }
-
-  if (months < 0) {
-    years--;
-    months += 12;
-  }
-
-  // Animación simple de conteo numérico
-  animateValue("years", 0, years, 1000);
-  animateValue("months", 0, months, 1500);
-  animateValue("days", 0, days, 2000);
-}
-
-// Función extra para que los números suban fluidamente
+// Animación numérica fluida
 function animateValue(id, start, end, duration) {
+  let obj = document.getElementById(id);
   if (start === end) {
-    document.getElementById(id).textContent = end;
+    obj.textContent = end;
     return;
   }
   let range = end - start;
   let current = start;
   let increment = end > start ? 1 : -1;
   let stepTime = Math.abs(Math.floor(duration / range));
-  let obj = document.getElementById(id);
   let timer = setInterval(function() {
     current += increment;
     obj.textContent = current;
@@ -87,4 +63,33 @@ function animateValue(id, start, end, duration) {
       clearInterval(timer);
     }
   }, stepTime);
+}
+
+// Lógica para la lluvia de corazones
+function createHeartRain() {
+  const hearts = ['🩶', '💖', '✨', '🤍'];
+  
+  // Genera corazones continuamente por 6 segundos
+  const interval = setInterval(() => {
+    const heart = document.createElement('div');
+    heart.classList.add('heart-fall');
+    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+    
+    // Posición horizontal, tamaño y velocidad aleatoria
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+    heart.style.fontSize = Math.random() * 12 + 12 + 'px';
+    
+    document.body.appendChild(heart);
+    
+    // Elimina el elemento del DOM al terminar la animación
+    setTimeout(() => {
+      heart.remove();
+    }, 5000);
+  }, 200);
+
+  // Detener la creación continua tras 6 segundos
+  setTimeout(() => {
+    clearInterval(interval);
+  }, 6000);
 }
